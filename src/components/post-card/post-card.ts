@@ -20,14 +20,14 @@ export class PostCardComponent {
   @Input() post: any;
   @Input() type: string;
   @Input() content: Content;
-  @Input() onClick: (e, item) => void;
+  @Input() onClick: (e, item, sanitise) => void;
   categories: Array<any>;
   tags: Array<any>;
   author$: Observable<IAuthorState>;
   featured_video: SafeHtml;
   
   constructor(
-    private store: Store<AppState>, private sanitise: DomSanitizer
+    private store: Store<AppState>, public sanitise: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class PostCardComponent {
     this.tags = terms && terms[1];
     this.author$ = this.store.select(state => state.items.users && state.items.users[this.post.author]);
     
-    if(this.post.metadata._featured_video){
+    if(this.post  && this.post.metadata._featured_video){
       this.featured_video =  this.sanitise.bypassSecurityTrustHtml(this.post.metadata._featured_video[0].slice(34, this.post.metadata._featured_video[0].length - 3).replace("560", " 100%").replace("315", "200"));
     }
   }

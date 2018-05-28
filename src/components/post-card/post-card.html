@@ -17,7 +17,7 @@
 
   <div
     *ngIf="post.metadata && post.metadata._featured_video"
-    (click)="onClick && onClick($event, post)"
+    (click)="onClick && onClick($event, post, sanitise)"
     class="thumbnail"
     [innerHtml]="featured_video"
     item-width="100%"

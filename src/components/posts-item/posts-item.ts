@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 
 import { ItemParentComponent } from './../ItemParent';
 import { IItemComponent } from './../interfaces';
-
+import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 /*
   Generated class for the PostsItem component.
 
@@ -20,7 +20,8 @@ export class PostsItemComponent extends ItemParentComponent implements IItemComp
   constructor(
     public navCtrl: NavController,
     public cdRef: ChangeDetectorRef,
+    public sanitise: DomSanitizer,
   ) {
-    super(navCtrl, cdRef);
+    super(navCtrl, cdRef, sanitise);
   }
 }
