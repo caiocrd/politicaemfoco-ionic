@@ -19,7 +19,7 @@ export class ItemParentComponent implements IItemComponent {
     set item(val: any) { this._item = val; this.cdRef.markForCheck(); }
     get item() { 
         //console.log('o item no itemParent eh ' + this._item);  
-        if(this._item && this._item.metadata._featured_video && this._item.metadata._featured_video[0]){
+        if(this._item && this._item.metadata && this._item.metadata._featured_video && this._item.metadata._featured_video[0]){
            console.log(this.sanitise);
            console.log(this._item.metadata._featured_video[0]);
            this._item.metadata._featured_video =  this.sanitise.bypassSecurityTrustHtml(this._item.metadata._featured_video[0].slice(34, this._item.metadata._featured_video[0].length - 3).replace("560", " 100%").replace("315", "200"));
